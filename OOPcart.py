@@ -14,24 +14,25 @@ class CartItem:
 
 class ShoppingCart:
     def __init__(self):
-        self.shopping_cart = []
-
-    # def delete_item(self):
-    #     removed_item = input('What is the name of the item you would like to remove?: ').title()
-    #     self.shopping_cart.remove(removed_item)
-
-    # def __str__(self):
-    #     return self.shopping_cart
-
+        self.shopping_cart = {}
 
     def format_items(self):
-        for item in self.shopping_cart:
+        for item in list(self.shopping_cart.values()):
             print(item)
             print("=" * 60)
 
+    def print_cart(self):
+        print(self.shopping_cart)
+
+    def add_items(self):
+        item_to_add = input('What\'s the name of the item you\'d like to add?: ').title()
+        price = random.randint(1,10)
+        item_object = CartItem(item_to_add, price)
+        self.shopping_cart[item_to_add] = item_object
+
     def delete_items(self):
-        item_to_delete = input("What's the name of the item you'd like to add?: ").title()
-        self.shopping_cart.remove(item_to_delete)
+        item_to_delete = input("What's the name of the item you'd like to delete?: ").title()
+        del self.shopping_cart[item_to_delete]
 
     def run(self):
         done = False
@@ -46,29 +47,18 @@ class ShoppingCart:
                 print("\nGoodbye! Thanks for shopping!")
                 done = True
             elif decision == 'add':
-                name = input("What's the name of the item you'd like to add?: ").title()
-                price = random.randint(1,10)
-                item = CartItem(name, price)
-                self.shopping_cart.append(item)
+                self.add_items()
             elif decision == "remove":
                 self.delete_items()
             elif decision == "review":
                 self.format_items()
+            elif decision == "print":
+                self.print_cart()
             elif decision == "help":
                 print(
                     "This application is a shopping cart. You add whatever you wish into it, take items out, and take a"
                     " look at your current shopping cart list. Thanks for using our software!")
 
-    def run_program(self):
-        self.run()
 
-
-shopping_cart = ShoppingCart()
-shopping_cart.run_program()
-
-# first = ["eggs", "bacon"]
-#
-# for i in first:
-#     print(repr(i))
-
-
+my_cart = ShoppingCart()
+my_cart.run()
