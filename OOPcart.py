@@ -30,8 +30,8 @@ class ShoppingCart:
             print("=" * 60)
 
     def delete_items(self):
-        for thing in self.shopping_cart:
-            self.shopping_cart.remove(thing)
+        item_to_delete = input("What's the name of the item you'd like to add?: ").title()
+        self.shopping_cart.remove(item_to_delete)
 
     def run(self):
         done = False
@@ -51,9 +51,6 @@ class ShoppingCart:
                 item = CartItem(name, price)
                 self.shopping_cart.append(item)
             elif decision == "remove":
-                removed_item = input("What's the name of the item you'd like to remove?: ").title()
-                # removed = CartItem(name, price)
-                # self.shopping_cart.remove(item)
                 self.delete_items()
             elif decision == "review":
                 self.format_items()
