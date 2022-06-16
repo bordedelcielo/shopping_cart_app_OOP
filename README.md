@@ -1,0 +1,1 @@
+My revisions of an OOP project's datastructure to accommodate the original idea (identifying objects based on strings from user input).
